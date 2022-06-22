@@ -1,10 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
-# -*- coding: UTF-8 -*-
 import pandas as pd
 import chemparse
 
@@ -19,9 +15,6 @@ def parse_formula(formula: str) -> dict:
     return chemparse.parse_formula(formula)
 
 
-# In[12]:
-
-
 charge_state = {
         "O": -2,
         "Li": 1,
@@ -34,7 +27,7 @@ charge_state = {
         "Ti": 4,
         "V":  5,
         "Cr": 3,
-        "Mn": 2, # Check oxidate state according to experimental data
+        "Mn": 2,  # Check oxidation state according to experimental data
         "Fe": 3,
         "Co": 2,
         "Ni": 2,
@@ -66,10 +59,6 @@ charge_state = {
         "Ga": 3,        
                 }
 
-
-# In[64]:
-
-
 if __name__ == "__main__":
     df = pd.read_excel('to_calculate.xlsx')
     pd.options.display.max_columns = 12
@@ -85,27 +74,3 @@ if __name__ == "__main__":
         print(new_composition, sep='\n')
         # df['Revised composition']
     print(df.head(30))
-
-
-# In[43]:
-
-
-semiconductor = get_formula()
-formula_as_dict = parse_formula(semiconductor)
-print(formula_as_dict)
-positive_charge = 0
-new_composition = ''
-for el, ind in formula_as_dict.items():
-    if el != 'O':
-        positive_charge += ind*charge_state[el]
-        new_composition += f'{el}{ind}'
-new_composition = new_composition + 'O' + f'{round(positive_charge/2, 3)}'
-
-print(new_composition)
-
-
-# In[ ]:
-
-
-
-

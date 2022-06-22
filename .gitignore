@@ -1,0 +1,8 @@
+__pychache__/
+*txt
+*png
+*.pyc
+*.xlsx
+.DS_store
+!requirements.txt
+.ipynb_checkpoints/

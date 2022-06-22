@@ -67,13 +67,12 @@ charge_state = {
                 }
 
 
-# In[54]:
+# In[64]:
 
 
 if __name__ == "__main__":
     df = pd.read_excel('to_calculate.xlsx')
     pd.options.display.max_columns = 12
-
     for semiconductor in df['Initial composition']:
         positive_charge = 0
         new_composition = ''
@@ -84,7 +83,7 @@ if __name__ == "__main__":
                 new_composition += f'{el}{ind}'
         new_composition = new_composition + 'O' + f'{round(positive_charge/2, 3)}'
         print(new_composition, sep='\n')
-        # df['Revised composition'] = new_composition
+        # df['Revised composition']
     print(df.head(30))
 
 

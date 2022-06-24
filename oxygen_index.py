@@ -1,20 +1,18 @@
 #!/usr/bin/env python
-# coding: utf-8
-
+# -*- coding: UTF-8 -*-
+"""Find the oxygen index in non-stoichiometric oxide-based materials
+according to charge balance rule"""
 import pandas as pd
 import chemparse
 
 
-def get_formula() -> str:
-    """Get formula of semiconductor from user input and return it"""
-    return input("Please, enter a semiconductor formula: ")
-
-
 def parse_formula(formula: str) -> dict:
-    """Parse semiconductor formula and return chemical composition as dictionary {'element': index, etc.}"""
+    """Parse semiconductor formula and return chemical composition
+     as dictionary {'element': index, etc.}"""
     return chemparse.parse_formula(formula)
 
 
+# Dictionary of used charge state
 charge_state = {
         "O": -2,
         "Li": 1,
@@ -27,7 +25,7 @@ charge_state = {
         "Ti": 4,
         "V":  5,
         "Cr": 3,
-        "Mn": 2,  # Check oxidation state according to experimental data
+        "Mn": 2,  # Check charge state according to experimental data
         "Fe": 3,
         "Co": 2,
         "Ni": 2,
@@ -56,13 +54,13 @@ charge_state = {
         "Tm": 3,
         "Yb": 3,
         "Bi": 3,
-        "Ga": 3,        
+        "Ga": 3,
                 }
 
 if __name__ == "__main__":
     df = pd.read_excel('to_calculate.xlsx')
     pd.options.display.max_columns = 12
-    for semiconductor in df['Initial composition']:
+    for i, semiconductor in enumerate(df['Initial composition']):
         positive_charge = 0
         new_composition = ''
         formula_as_dict = parse_formula(semiconductor)
@@ -71,6 +69,7 @@ if __name__ == "__main__":
                 positive_charge += ind*charge_state[el]
                 new_composition += f'{el}{ind}'
         new_composition = new_composition + 'O' + f'{round(positive_charge/2, 3)}'
-        print(new_composition, sep='\n')
-        # df['Revised composition']
-    print(df.head(30))
+        df.at[i, 'Revised composition'] = new_composition
+    # Export data in csv and excel formats
+    df.to_csv('Revised compositions.csv', sep=',', index=False)
+    df.to_excel('Revised compositions.xlsx', index=False)

@@ -3,6 +3,8 @@ __pychache__/
 *png
 *.pyc
 *.xlsx
+*.csv
+.virtual_documents
 .DS_store
 !requirements.txt
 .ipynb_checkpoints/

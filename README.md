@@ -25,8 +25,12 @@ After preparing `to_predict.xlsx`, you can calculate oxygen index by two options
  - 1st option - open `calc_oxygen_index.ipynb` Jupyter lab file and run cell by cell. 
  - 2ns option - run python script `calc_oxygen_index.py`.
 
-It will automatically read `to_predict.xlsx` and make calculation. The results will be stored in files `Revised compositions.csv` and `Revised compositions.xlsx`, where you can find chemical compositions in two columns:
-"`Initial composition`" and "`Revised composition`".
+It will automatically read `to_predict.xlsx` and make calculation. 
+
+### Results
+The results will be stored in files `Revised compositions.csv`/`Revised compositions.xlsx`, where you can find chemical compositions in two columns:
+- "`Initial composition`" - is initial data, 
+-  "`Revised composition`" - is data with calculated oxygen index.
 
 ## Author
 
